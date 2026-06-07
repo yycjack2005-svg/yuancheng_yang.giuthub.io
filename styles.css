@@ -1,0 +1,160 @@
+/* ============================================================
+   Yuancheng Yang — portfolio
+   Shared styles, tokens & type system
+   ============================================================ */
+
+/* --- Self-hosted licensed fonts (no external dependency) --- */
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("fonts/InstrumentSerif-Regular.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("fonts/InstrumentSerif-Italic.ttf") format("truetype");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Neue Haas Display";
+  src: url("fonts/NeueHaasDisplay-Light.ttf") format("truetype");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Neue Haas Display";
+  src: url("fonts/NeueHaasDisplay-Roman.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Neue Haas Display";
+  src: url("fonts/NeueHaasDisplay-Medium.ttf") format("truetype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Neue Haas Display";
+  src: url("fonts/NeueHaasDisplay-Bold.ttf") format("truetype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Aeonik Fono";
+  src: url("fonts/AeonikFono-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Aeonik Fono";
+  src: url("fonts/AeonikFono-Medium.otf") format("opentype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Noto Serif";
+  src: url("fonts/NotoSerif-SemiBold.ttf") format("truetype");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* palette pulled directly from the Figma file */
+  --bg: #000000;
+  --fg: #c4bfb4;              /* warm beige — primary text */
+  --fg-dim: rgba(196, 191, 180, 0.55);
+  --fg-faint: rgba(196, 191, 180, 0.32);
+  --line: rgba(196, 191, 180, 0.9);
+  --panel: #d9d9d9;          /* image placeholder grey */
+  --hero-veil: rgba(217, 217, 217, 0.5);
+
+  /* type stacks — self-hosted licensed faces */
+  --serif: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+  --grotesk: "Neue Haas Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "Aeonik Fono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* fluid horizontal page margin: 160px on a 1440 canvas */
+  --gutter: clamp(20px, 11.1vw, 160px);
+  --maxw: 1440px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--grotesk);
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection { background: var(--fg); color: #000; }
+
+a { color: inherit; text-decoration: none; }
+
+img { display: block; max-width: 100%; }
+
+.shell {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* --- shared label / mono treatments --- */
+.eyebrow {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: clamp(12px, 1.05vw, 16px);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.hrule {
+  height: 0;
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 0;
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ============================================================
+   Shared site chrome — contact items, footer, mobile dock
+   (used by home + every case-study page)
+   ============================================================ */
+.contact-item { display: flex; flex-direction: column; gap: 4px; }
+.contact-item .lbl { font-family: var(--mono); font-weight: 400; font-size: 13px; color: var(--fg-dim); letter-spacing: .02em; }
+.contact-item a { font-size: clamp(13px, 1vw, 15px); transition: opacity .2s; }
+.contact-item a:hover { opacity: .6; }
+
+.foot {
+  border-top: 1px solid var(--fg-faint);
+  padding-block: clamp(40px, 5vw, 72px) clamp(40px, 5vw, 64px);
+  display: flex; flex-wrap: wrap; gap: 32px 64px;
+  align-items: flex-end; justify-content: space-between;
+}
+.foot__contact { display: flex; flex-wrap: wrap; gap: 28px 56px; }
+.foot__name { font-family: var(--serif); font-size: clamp(24px, 2.4vw, 34px); line-height: 1; text-align: right; }
+.foot__copy { font-family: var(--mono); font-size: 12px; color: var(--fg-dim); letter-spacing: .03em; }
+
+.dock { display: none; }
+
+@media (max-width: 760px) {
+  .foot { padding-bottom: 110px; }
+  .dock {
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: rgba(0,0,0,.82);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid var(--fg-faint);
+  }
+  .dock a {
+    padding: 16px 8px; text-align: center;
+    font-family: var(--mono); font-size: 13px; letter-spacing: .04em;
+    text-transform: uppercase; color: var(--fg);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .dock a:first-child { border-right: 1px solid var(--fg-faint); }
+  .dock a:active { background: rgba(196,191,180,.1); }
+}
