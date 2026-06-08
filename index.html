@@ -356,28 +356,41 @@
   <a href="mailto:y_yuancheng@outlook.com">Email</a>
   <a href="tel:+447741729999">Call</a>
 </nav>
-
 <script>
-  // Hero video: only request the file if it actually exists, so there's no
-  // 404 while the slot is empty. Drop assets/hero.mp4 and it loads, plays
-  // and hides the fallback placeholder automatically. If the file is missing
-  // or can't play, the static placeholder text stays visible instead.
   (function () {
     var SRC = "https://media.yc-yang.com/hero.mp4";
     var v = document.querySelector('.hero__video');
     var ph = document.getElementById('heroPlaceholder');
     if (!v) return;
-    fetch(SRC, { method: 'HEAD' }).then(function (res) {
-      if (!res.ok) return;            // no file yet → keep placeholder
-      v.src = SRC;
-      v.play().catch(function () {});
-      v.addEventListener('loadeddata', function () {
-        v.classList.add('is-ready');
-        if (ph) ph.style.display = 'none';
-      });
-    }).catch(function () { /* offline / not found → keep placeholder */ });
+
+    // 1. 直接把地址给视频标签，让浏览器原生管道去加载
+    v.src = SRC;
+
+    // 2. 监听：如果视频成功加载了第一帧数据（说明文件存在且能播放）
+    v.addEventListener('loadeddata', function () {
+      console.log("视频加载成功！");
+      // 让视频淡入显示
+      v.style.opacity = '1'; 
+      v.classList.add('is-ready');
+      // 隐藏占位图
+      if (ph) ph.style.display = 'none'; 
+    });
+
+    // 3. 监听：如果视频不存在(404)、服务器崩溃(502)或网络断开
+    v.addEventListener('error', function () {
+      console.error("视频加载失败（可能文件不存在、跨域或服务器502），保留静态占位图");
+      if (ph) ph.style.display = 'block'; 
+      v.style.opacity = '0';
+    });
+
+    // 4. 尝试自动播放
+    v.play().catch(function (err) {
+      // 如果浏览器因为政策拦截了自动播放，这里捕获错误，防止控制台爆红
+      console.log("自动播放被浏览器拦截（通常需要用户点击交互）:", err);
+    });
   })();
 </script>
+
 
 </body>
 </html>
