@@ -358,24 +358,28 @@
 </nav>
 
 <script>
-  // Hero video: only request the file if it actually exists, so there's no
-  // 404 while the slot is empty. Drop assets/hero.mp4 and it loads, plays
-  // and hides the fallback placeholder automatically. If the file is missing
-  // or can't play, the static placeholder text stays visible instead.
   (function () {
     var SRC = "https://media.yc-yang.com/hero.mp4";
     var v = document.querySelector('.hero__video');
     var ph = document.getElementById('heroPlaceholder');
     if (!v) return;
-    fetch(SRC, { method: 'HEAD' }).then(function (res) {
-      if (!res.ok) return;            // no file yet → keep placeholder
-      v.src = SRC;
-      v.play().catch(function () {});
-      v.addEventListener('loadeddata', function () {
-        v.classList.add('is-ready');
-        if (ph) ph.style.display = 'none';
-      });
-    }).catch(function () { /* offline / not found → keep placeholder */ });
+    v.src = SRC;
+    v.addEventListener('loadeddata', function () {
+      console.log("视频加载成功！");
+      // 让视频淡入显示
+      v.style.opacity = '1'; 
+      v.classList.add('is-ready');
+      // 隐藏占位图
+      if (ph) ph.style.display = 'none'; 
+    });
+    v.addEventListener('error', function () {
+      console.error("视频加载失败（可能文件不存在、跨域或服务器502），保留静态占位图");
+      if (ph) ph.style.display = 'block'; 
+      v.style.opacity = '0';
+    });
+    v.play().catch(function (err) {
+      console.log("自动播放被浏览器拦截（通常需要用户点击交互）:", err);
+    });
   })();
 </script>
 
