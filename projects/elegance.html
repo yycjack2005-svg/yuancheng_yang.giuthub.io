@@ -4,12 +4,87 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Elegance of Management — Yuancheng Yang</title>
-<meta name="description" content="Elegance of Management — Zero-Knowledge Reimbursement. Service Design · Mobile UX. Work by Yuancheng (Jack) Yang." />
+<meta name="description" content="Elegance of Management — a mobile service that makes business-trip expense reimbursement quick and traceable. Field research at ITS China, service design and a working app prototype by Yuancheng (Jack) Yang." />
 <meta property="og:title" content="Elegance of Management — Yuancheng Yang" />
-<meta property="og:description" content="Zero-Knowledge Reimbursement" />
+<meta property="og:description" content="A mobile service that makes expense reimbursement quick, fair and traceable." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ctext x='16' y='25' font-family='Georgia,serif' font-size='26' fill='%23c4bfb4' text-anchor='middle'%3EY%3C/text%3E%3C/svg%3E" />
 <link rel="stylesheet" href="../styles.css" />
 <link rel="stylesheet" href="../case.css" />
+<style>
+  /* ---- product accent, drawn from the app's own navy ---- */
+  :root {
+    --eom: #7e9bd8;            /* readable navy on black, for data viz */
+    --eom-deep: #26478f;       /* true brand navy, for app UI fills */
+    --eom-track: rgba(126,155,216,.16);
+  }
+
+  /* ============ reconstructed research data viz ============ */
+  .data { margin-top: clamp(26px, 3vw, 42px); }
+
+  /* headline figure: donut + key stats */
+  .headfig {
+    display: grid; grid-template-columns: auto 1fr; gap: clamp(28px, 4vw, 64px);
+    align-items: center;
+    border: 1px solid var(--fg-faint); border-radius: 18px;
+    padding: clamp(24px, 3vw, 44px);
+  }
+  .donut {
+    --p: 90;
+    width: clamp(150px, 18vw, 210px); aspect-ratio: 1; border-radius: 50%;
+    background: conic-gradient(var(--eom) calc(var(--p) * 1%), var(--eom-track) 0);
+    display: grid; place-items: center; position: relative;
+  }
+  .donut::after {
+    content: ""; position: absolute; inset: 18%; border-radius: 50%; background: var(--bg);
+  }
+  .donut__c { position: relative; z-index: 1; text-align: center; }
+  .donut__c b { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 5vw, 62px); line-height: .9; letter-spacing: -.02em; display: block; }
+  .donut__c span { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--fg-dim); }
+  .headfig__txt p { margin: 0 0 18px; font-size: clamp(16px, 1.5vw, 21px); line-height: 1.4; max-width: 32ch; text-wrap: pretty; }
+  .headfig__row { display: flex; flex-wrap: wrap; gap: clamp(20px, 3vw, 44px); }
+  .kstat b { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 3.6vw, 46px); line-height: .95; letter-spacing: -.01em; display: block; }
+  .kstat span { font-family: var(--mono); font-size: 11px; letter-spacing: .03em; text-transform: uppercase; color: var(--fg-dim); }
+
+  /* horizontal bar chart */
+  .bars { margin-top: clamp(22px, 2.6vw, 34px); display: flex; flex-direction: column; gap: clamp(12px, 1.4vw, 18px); }
+  .bars__cap { font-family: var(--mono); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--fg-dim); margin: 0 0 4px; }
+  .bar { display: grid; grid-template-columns: 8.5em 1fr auto; gap: clamp(12px, 1.6vw, 22px); align-items: center; }
+  .bar__l { font-size: clamp(13px, 1.1vw, 16px); color: var(--fg); }
+  .bar__track { height: 12px; border-radius: 999px; background: var(--eom-track); overflow: hidden; }
+  .bar__fill { height: 100%; border-radius: 999px; background: var(--eom); width: var(--w, 0); transform-origin: left; }
+  .bar__v { font-family: var(--mono); font-size: 13px; color: var(--fg); min-width: 3.2em; text-align: right; }
+  .bar--muted .bar__fill { background: var(--fg-faint); }
+
+  @media (max-width: 620px) {
+    .headfig { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .headfig__row { justify-content: center; }
+    .bar { grid-template-columns: 7em 1fr auto; gap: 12px; }
+  }
+
+  /* ============ user-flow diagram ============ */
+  .flow {
+    margin-top: clamp(24px, 3vw, 40px);
+    display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px;
+  }
+  .flow__step {
+    flex: 1 1 130px; border: 1px solid var(--fg-faint); border-radius: 14px;
+    padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 8px; position: relative;
+  }
+  .flow__step .n { font-family: var(--mono); font-size: 11px; color: var(--eom); letter-spacing: .06em; }
+  .flow__step b { font-weight: 500; font-size: clamp(14px, 1.2vw, 17px); }
+  .flow__step span { font-size: 12.5px; line-height: 1.45; color: var(--fg-dim); }
+  .flow__step.is-key { border-color: var(--eom); }
+
+  /* value props */
+  .props { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.6vw, 22px); margin-top: clamp(30px, 3.6vw, 52px); }
+  .prop { border: 1px solid var(--fg-faint); border-radius: 16px; padding: clamp(20px, 2.2vw, 30px); }
+  .prop b { font-weight: 500; font-size: clamp(16px, 1.5vw, 21px); letter-spacing: -.01em; display: block; margin-bottom: 8px; }
+  .prop span { font-size: clamp(13px, 1.1vw, 15px); line-height: 1.5; color: var(--fg-dim); }
+
+  @media (max-width: 760px) {
+    .props { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
@@ -22,40 +97,169 @@
 </header>
 
 <main>
+  <!-- ===== HERO ===== -->
   <section class="shell case-hero" data-screen-label="case-hero">
-    <span class="eyebrow">Zero-Knowledge Reimbursement</span>
-    <h1 class="case-title">Elegance of Management</h1>
+    <span class="eyebrow">Mobile UX design</span>
+    <h1 class="case-title">Elegance of<br>Management</h1>
     <div class="case-meta">
-      <dl><dt>Discipline</dt><dd>Service Design · Mobile UX</dd></dl>
-      <dl><dt>Year</dt><dd style="color:var(--fg-dim)">Add year</dd></dl>
-      <dl><dt>Role</dt><dd style="color:var(--fg-dim)">Add your role</dd></dl>
+      <dl><dt>Timeline</dt><dd>Feb – Jun 2024</dd></dl>
+      <dl><dt>Discipline</dt><dd>Mobile UX design</dd></dl>
+      <dl><dt>Context</dt><dd>Individual project · Set brief</dd></dl>
     </div>
   </section>
 
-  <figure class="case-figure">
-    <div class="frame"><img src="../assets/elegance.jpg" alt="Elegance of Management" /></div>
-    <figcaption>Elegance of Management — reimbursement app flow</figcaption>
+  <!-- hero: design-system & IA board -->
+  <figure class="shell case-photo" data-screen-label="hero-system">
+    <img src="../assets/eom/system.jpg" alt="Elegance of Management design system board: app screens, information architecture map, icon set, type and the navy colour palette" />
+    <figcaption>The system at a glance: screens, the information architecture, and the icon, type and colour kit that holds them together.</figcaption>
   </figure>
 
-  <div class="shell">
-    <article class="prose">
-      <p class="lead">A mobile service concept that reimagines expense reimbursement around zero-knowledge proofs — letting people claim what they’re owed without surrendering the details of their lives.</p>
+  <div class="shell case-body">
 
-      <h2>The Brief</h2>
-      <div class="fill">Replace this block with the project brief — the question or problem you set out to explore, who it was for, and the constraints you worked within. <b>(Editable placeholder.)</b></div>
+    <!-- ===== OVERVIEW ===== -->
+    <section class="csec" data-screen-label="sec-overview" style="border-top:none;margin-top:clamp(48px,6vw,90px);padding-top:0;">
+      <div class="overview">
+        <p class="hook">Business trips end with a paper trail nobody enjoys: a pocket of crumpled receipts, an evening of forms, and a claim that takes weeks to trace.</p>
+        <p>The brief asked me to design around the daily professional difficulties of someone close to me. That person was Mr. Dakai Yang, a colleague who travels constantly for work, and his reimbursement routine became the starting point. Elegance of Management grew from there into a mobile service that makes expense reimbursement quick and traceable. I ran the project on my own over Feb to Jun 2024, from field interviews at ITS China through to a working app prototype. The goal was simple to state and hard to earn: turn an hour of admin into a few taps, and give every claim a clear, findable history.</p>
+      </div>
+      <div class="quals" aria-label="Project qualities">
+        <span>Field interviews</span>
+        <span>Survey of 11</span>
+        <span>Service design</span>
+        <span>Receipt scanning</span>
+        <span>Voice notes</span>
+        <span>Mobile prototype</span>
+      </div>
+    </section>
 
-      <h2>Approach</h2>
-      <div class="fill">Walk through your process — research, experiments, iterations, key decisions. Add as many paragraphs as you like. <b>(Editable placeholder.)</b></div>
+    <!-- ===== 01 LISTEN ===== -->
+    <article class="move" data-screen-label="sec-listen">
+      <div class="move__head"><span class="move__n">01</span><h2 class="move__t">Listen</h2></div>
+      <p class="move__d">The starting point was Mr. Dakai Yang, my primary user, who claims expenses after almost every trip. To test whether his frustration was widely shared, I took it to two senior people at ITS China, the China Intelligent Transportation Systems association. Each described the same routine from a different angle, and together they pointed at one shared problem rather than a general complaint about finance.</p>
 
-      <div class="slot"><span>Process image — replace with ../assets/your-image.jpg</span></div>
+      <div class="maps" style="margin-top:clamp(26px,3vw,40px);">
+        <div class="row"><div class="a">Mr. Dakai Yang<br><span style="color:var(--fg-faint);font-size:12px;">Primary user</span></div><div class="arr">“</div><div class="b">Applying for reimbursement after a business trip is genuinely painful. You hoard every ticket, then spend an evening copying them onto a form.</div></div>
+        <div class="row"><div class="a">Prof. Junli Wang<br><span style="color:var(--fg-faint);font-size:12px;">Supervisor, ITS China</span></div><div class="arr">“</div><div class="b">Keeping every physical receipt across a whole trip has become a real burden. One lost slip and the claim stalls.</div></div>
+        <div class="row"><div class="a">Ms. Ying Yang<br><span style="color:var(--fg-faint);font-size:12px;">Secretary General, ITS China</span></div><div class="arr">“</div><div class="b">It is almost impossible to find a reimbursement report from a trip two months ago. The history simply is not there.</div></div>
+      </div>
 
-      <h2>Outcome</h2>
-      <div class="fill">What did you make, what did you learn, where could it go next? <b>(Editable placeholder.)</b></div>
+      <p class="callout">The pain was never the money. It was the paperwork, the waiting, and the lack of a trail once a claim was filed.</p>
     </article>
 
-    <a class="next" href="relive.html" data-screen-label="next-project">
-      <span><span class="lbl">Next project</span><br><span class="ttl">RELIVE</span></span>
-      <span class="ar">→</span>
+    <!-- ===== 02 MEASURE ===== -->
+    <article class="move" data-screen-label="sec-measure">
+      <div class="move__head"><span class="move__n">02</span><h2 class="move__t">Measure</h2></div>
+      <p class="move__d">To check the interviews held beyond three people, I surveyed eleven professionals across the transport industry about their last reimbursement. The numbers were blunt. Reimbursement was the clear winner among finance headaches, and a single report routinely ate most of an afternoon.</p>
+
+      <div class="data">
+        <div class="headfig">
+          <div class="donut" style="--p:90;">
+            <div class="donut__c"><b>90%</b><span>of participants</span></div>
+          </div>
+          <div class="headfig__txt">
+            <p>named reimbursement a real problem at work, ahead of every other finance task.</p>
+            <div class="headfig__row">
+              <div class="kstat"><b>84 min</b><span>average per report</span></div>
+              <div class="kstat"><b>11</b><span>professionals surveyed</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bars" aria-label="Time spent on the last reimbursement report">
+          <p class="bars__cap">Time spent on the last reimbursement report</p>
+          <div class="bar"><span class="bar__l">Over 90 min</span><div class="bar__track"><div class="bar__fill" style="--w:100%"></div></div><span class="bar__v">54%</span></div>
+          <div class="bar"><span class="bar__l">60 to 90 min</span><div class="bar__track"><div class="bar__fill" style="--w:50%"></div></div><span class="bar__v">27%</span></div>
+          <div class="bar"><span class="bar__l">30 to 60 min</span><div class="bar__track"><div class="bar__fill" style="--w:17%"></div></div><span class="bar__v">9%</span></div>
+          <div class="bar"><span class="bar__l">Under 30 min</span><div class="bar__track"><div class="bar__fill" style="--w:17%"></div></div><span class="bar__v">9%</span></div>
+        </div>
+
+        <div class="bars" style="margin-top:clamp(30px,3.4vw,48px);" aria-label="Most claimed categories">
+          <p class="bars__cap">What gets claimed most, by mentions</p>
+          <div class="bar"><span class="bar__l">Plane tickets</span><div class="bar__track"><div class="bar__fill" style="--w:100%"></div></div><span class="bar__v">20</span></div>
+          <div class="bar"><span class="bar__l">Train tickets</span><div class="bar__track"><div class="bar__fill" style="--w:45%"></div></div><span class="bar__v">9</span></div>
+          <div class="bar"><span class="bar__l">Meals</span><div class="bar__track"><div class="bar__fill" style="--w:30%"></div></div><span class="bar__v">6</span></div>
+          <div class="bar"><span class="bar__l">Hotel</span><div class="bar__track"><div class="bar__fill" style="--w:20%"></div></div><span class="bar__v">4</span></div>
+          <div class="bar"><span class="bar__l">Uber</span><div class="bar__track"><div class="bar__fill" style="--w:20%"></div></div><span class="bar__v">4</span></div>
+          <div class="bar bar--muted"><span class="bar__l">Office supply</span><div class="bar__track"><div class="bar__fill" style="--w:15%"></div></div><span class="bar__v">3</span></div>
+          <div class="bar bar--muted"><span class="bar__l">Presents</span><div class="bar__track"><div class="bar__fill" style="--w:10%"></div></div><span class="bar__v">2</span></div>
+        </div>
+      </div>
+
+      <p class="move__d" style="margin-top:clamp(26px,3vw,40px);">That settled the scope. Instead of a broad finance tool, the project would solve one job well: the trip-to-claim journey, with travel and meals as the everyday cases to design around.</p>
+    </article>
+
+    <!-- ===== 03 CHOOSE A DIRECTION ===== -->
+    <article class="move" data-screen-label="sec-choose">
+      <div class="move__head"><span class="move__n">03</span><h2 class="move__t">Choose a direction</h2></div>
+      <p class="move__d">Before designing anything, I weighed the obvious fixes and threw most of them out. Each had a clear reason to fail, which made the right path easier to commit to.</p>
+
+      <ul class="blist">
+        <li><span class="n">01</span><span><b>Hire reimbursement specialists.</b> Rejected. The headcount costs more than the problem is worth.</span></li>
+        <li><span class="n">02</span><span><b>Standardise the paper form.</b> Helpful, yet people still carry and store every physical receipt.</span></li>
+        <li><span class="n">03</span><span><b>Present receipts in person after each trip.</b> Honest, and far too slow for everyone involved.</span></li>
+        <li><span class="n">04</span><span><b>Pay a fixed travel allowance.</b> Removes claims entirely, and is impossible to keep fair across different trips.</span></li>
+        <li><span class="n">05</span><span><b>Fully digitise receipts at source.</b> Ideal on paper, blocked in reality by the many formats merchants use.</span></li>
+        <li><span class="n">06</span><span><b>Scan receipts with the phone camera.</b> Chosen. Achievable today, easy to use, and it covers the pain points in one move.</span></li>
+      </ul>
+
+      <p class="callout">A camera every traveller already carries, paired with one standard digital form, was the most effective answer that could actually ship.</p>
+    </article>
+
+    <!-- ===== 04 DESIGN THE FLOW ===== -->
+    <article class="move" data-screen-label="sec-flow">
+      <div class="move__head"><span class="move__n">04</span><h2 class="move__t">Design the flow</h2></div>
+      <p class="move__d">The service is built around a single loop. A trip becomes an event, an event collects its own receipts and notes, and the dashboard keeps the running history that the interviews said was missing. The new-event screen carries the weight, so I kept everything else light.</p>
+
+      <div class="flow" aria-label="User flow">
+        <div class="flow__step"><span class="n">01</span><b>Sign in</b><span>Name and identity number, nothing more.</span></div>
+        <div class="flow__step"><span class="n">02</span><b>Dashboard</b><span>Spend so far, plus every past claim and its status.</span></div>
+        <div class="flow__step is-key"><span class="n">03</span><b>New event</b><span>Scan the receipt, set the category, add a note.</span></div>
+        <div class="flow__step"><span class="n">04</span><b>Auto tag</b><span>Date, amount and place read from the scan.</span></div>
+        <div class="flow__step"><span class="n">05</span><b>Done</b><span>The claim files itself into a traceable record.</span></div>
+      </div>
+
+      <figure class="cfig">
+        <img src="../assets/eom/wireframe.jpg" alt="Low-fidelity wireframe board: six greyscale screens (log in, main page, new reimbursement, scan receipts, reimbursement overview, filters) joined by interaction arrows" loading="lazy" />
+        <figcaption>The wireframe stage, every screen mapped in grey with the interaction plan drawn between them.</figcaption>
+      </figure>
+    </article>
+
+    <!-- ===== 05 TEST AND REFINE ===== -->
+    <article class="move" data-screen-label="sec-refine">
+      <div class="move__head"><span class="move__n">05</span><h2 class="move__t">Test and refine</h2></div>
+      <p class="move__d">A paper model put the flow in front of real users, including several older participants. Three pieces of feedback changed the design, and each one earned its place by being specific.</p>
+
+      <ul class="blist">
+        <li><span class="n">01</span><span><b>“Bigger text and icons, please.”</b> Older users found the layout tight, so the copy was streamlined and every icon enlarged for an easier tap.</span></li>
+        <li><span class="n">02</span><span><b>“Commonly used is not useful.”</b> A shortcuts panel for frequent events sounded smart, yet claims are occasional by nature. I dropped it and let each event stand on its own.</span></li>
+        <li><span class="n">03</span><span><b>“Can we leave a message?”</b> People wanted to explain an odd expense without typing. That request became the voice memorandum attached to every event.</span></li>
+      </ul>
+    </article>
+
+    <!-- ===== 06 THE APP ===== -->
+    <article class="move" data-screen-label="sec-app">
+      <div class="move__head"><span class="move__n">06</span><h2 class="move__t">The app</h2></div>
+      <p class="move__d">The result is a calm, single-purpose app. Every screen serves the trip-to-claim loop, and the work that used to take an afternoon now fits in the gaps of a journey home.</p>
+
+      <figure class="cfig">
+        <img src="../assets/eom/prototype.jpg" alt="Final high-fidelity prototype: log in, main page, new event, scan receipt, voice memorandum and overview screens in navy and white, connected by the interaction flow" loading="lazy" />
+        <figcaption>The final prototype, the same flow resolved in the app’s navy and white, with the interaction plan carried through.</figcaption>
+      </figure>
+
+      <div class="props">
+        <div class="prop"><b>No marking by hand</b><span>The scan tags date, amount and place to each receipt automatically.</span></div>
+        <div class="prop"><b>No messy formats</b><span>Every claim follows the same order and template, so approval is faster.</span></div>
+        <div class="prop"><b>No losing track</b><span>The dashboard keeps a full history, ready to open months later.</span></div>
+      </div>
+    </article>
+
+    <!-- closing -->
+    <p class="closing">The most elegant management is the kind you stop noticing, because the work quietly takes care of itself.</p>
+
+    <!-- back to homepage -->
+    <a class="next next--back" href="../index.html" data-screen-label="back-home">
+      <span class="ar">←</span>
+      <span><span class="lbl">Back to</span><br><span class="ttl">All work</span></span>
     </a>
   </div>
 

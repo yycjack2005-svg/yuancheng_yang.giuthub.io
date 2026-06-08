@@ -84,6 +84,17 @@
 .case-photo img { width: 100%; height: auto; display: block; border-radius: 18px; }
 .case-photo figcaption { font-family: var(--mono); font-size: 12px; color: var(--fg-dim); letter-spacing: .02em; margin-top: 14px; }
 
+/* full-length website capture — full content width, matching the figures above */
+.siteshot { margin: clamp(26px, 3vw, 44px) 0 0; }
+.siteshot img {
+  width: 100%; height: auto; display: block; border-radius: 14px;
+  border: 1px solid rgba(196,191,180,.18);
+}
+.siteshot figcaption {
+  font-family: var(--mono); font-size: 12px; color: var(--fg-dim);
+  letter-spacing: .02em; margin-top: 12px;
+}
+
 /* outcome gallery — mixed sizes */
 .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 1.4vw, 20px); margin-top: clamp(22px, 2.6vw, 36px); }
 .gallery figure { margin: 0; }

@@ -49,31 +49,12 @@
   opacity: 0; transition: opacity .8s ease;
 }
 .hero__video.is-ready { opacity: 1; }
-/* faint living sheen while no video is present */
-.hero__media::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.10) 50%, transparent 70%);
-  background-size: 280% 100%;
-  pointer-events: none;
-}
 .hero__placeholder {
   position: absolute; left: 50%; top: 50%;
   transform: translate(-50%, -50%);
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
-  font-family: var(--mono); font-size: 13px; letter-spacing: .04em;
-  color: rgba(40,40,38,.62); text-transform: uppercase;
-  text-align: center; padding: 0 24px;
-}
-.hero__placeholder .ph-ico {
-  width: 34px; height: 34px; border-radius: 50%;
-  border: 1px solid rgba(40,40,38,.5);
-  display: grid; place-items: center;
-}
-.hero__placeholder .ph-ico::before {
-  content: ""; border-style: solid; border-width: 7px 0 7px 12px;
-  border-color: transparent transparent transparent rgba(40,40,38,.7);
-  margin-left: 3px;
+  font-family: var(--mono); font-size: clamp(12px, 1.3vw, 15px); letter-spacing: .04em;
+  color: rgba(40,40,38,.55); text-transform: none;
+  text-align: center; padding: 0 24px; white-space: nowrap;
 }
 
 .hero__name {
@@ -161,7 +142,7 @@
   display: grid;
   grid-template-columns: 1.057fr 1fr;
   gap: clamp(20px, 2.1vw, 30px);
-  padding-bottom: clamp(80px, 10vw, 150px);
+  padding-bottom: 0;
 }
 .work__col { display: flex; flex-direction: column; gap: clamp(36px, 4.4vw, 64px); }
 .work__col--right { gap: clamp(32px, 3.9vw, 56px); }
@@ -193,6 +174,26 @@
 .card:hover .card__cat { color: var(--fg); }
 .card:hover .card__title .arrow { opacity: 1; transform: translateX(3px); }
 
+/* ---------------- sign-off ---------------- */
+.signoff {
+  text-align: center;
+  padding: clamp(48px, 6vw, 80px) 0 clamp(8px, 2vw, 24px);
+}
+.signoff__line {
+  margin: 0;
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(26px, 3.4vw, 46px); line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  text-wrap: balance;
+}
+.signoff__thanks {
+  margin: clamp(14px, 1.6vw, 20px) 0 0;
+  font-family: var(--mono); font-weight: 400;
+  font-size: clamp(12px, 1vw, 14px); letter-spacing: .02em;
+  color: var(--fg-dim);
+}
+
 /* ====================================================
    MOBILE — app-like reflow
    ==================================================== */
@@ -202,12 +203,12 @@
   .hero__name { margin-top: -14px; }
 
   .about { grid-template-columns: 1fr; gap: 14px; }
-  .about__bio { max-width: none; }
+  .about__bio { width: 100%; max-width: none; }
 
   .news__row { grid-template-columns: 88px 1fr; gap: 18px; }
 
   /* project grid → single full-width feed */
-  .work { grid-template-columns: 1fr; gap: 28px; padding-bottom: 120px; }
+  .work { grid-template-columns: 1fr; gap: 28px; padding-bottom: 0; }
   .work__col, .work__col--right { gap: 28px; }
   .card--feature .card__frame { aspect-ratio: 4 / 5; }
   .card--small .card__frame { aspect-ratio: 16 / 10; }
@@ -222,12 +223,13 @@
 </style>
 </head>
 <body>
+
 <main>
   <!-- HERO -->
   <section class="hero" data-screen-label="hero" aria-label="Intro">
     <div class="hero__media">
       <video class="hero__video" muted loop playsinline preload="auto"></video>
-      </div>
+      <div class="hero__placeholder" id="heroPlaceholder">if u see this, ur ISP sucks</div>
     </div>
     <header class="topbar shell" data-screen-label="header">
       <div class="contact-item">
@@ -251,10 +253,10 @@
     <section class="about" data-screen-label="about" aria-label="About">
       <h2 class="section-label">About This<br>Person</h2>
       <div class="about__bio">
-        <p>Hi, I’m Yuancheng (Jack). I’m currently studying BA User Experience Design at London College of Communication, University of the Arts London.</p>
+        <p>Hi, I’m Yuancheng (Jack). I’m currently studying BA User Experience Design at London College of Communication, <a class="ilink" href="https://www.arts.ac.uk" target="_blank" rel="noopener noreferrer">University of the Arts London</a>.</p>
         <p>I am interested in user experience as a method of enquiry: observing how people move through systems, identifying where technologies create friction, and testing how design can make complex transitions easier to understand.</p>
         <p>My recent projects often look at temporary and supportive interventions — small design moves that operate between existing infrastructures and uncertain futures. This includes work around transport routines, care technologies, service communication, and low-intrusion interaction.</p>
-        <p>I have worked as a software engineering intern at YUNEX Traffic and a marketing intern at Siemens Xcelerator.</p>
+        <p>I have worked as a software engineering intern at <a class="ilink" href="https://www.yunextraffic.com" target="_blank" rel="noopener noreferrer">YUNEX Traffic</a> and a marketing intern at <a class="ilink" href="https://www.siemens.com/en-us/company/digital-transformation/" target="_blank" rel="noopener noreferrer">Siemens Xcelerator</a>.</p>
       </div>
     </section>
 
@@ -265,11 +267,11 @@
         <hr class="hrule" />
       </div>
       <div class="news__list">
-        <div class="news__row"><span class="news__date">Apr 2026</span><span class="news__txt">Invited to PCI Tech (smart urban transportation BG) as a research affiliate</span></div>
-        <div class="news__row"><span class="news__date">Aug 2025</span><span class="news__txt">Final day at Siemens!</span></div>
-        <div class="news__row"><span class="news__date">Feb 2025</span><span class="news__txt">Joined Siemens Xcelerator team as a marketing intern</span></div>
-        <div class="news__row"><span class="news__date">Sep 2023</span><span class="news__txt">Started my Undergrad at LCC, UAL</span></div>
-        <div class="news__row"><span class="news__date">Jun 2023</span><span class="news__txt">SWE intern at YUNEX Traffic</span></div>
+        <div class="news__row"><span class="news__date">Apr 2026</span><span class="news__txt">Invited to <a class="ilink" href="https://www.pcitech.com/en/" target="_blank" rel="noopener noreferrer">PCI Tech</a> (smart urban transportation BG) as a research affiliate</span></div>
+        <div class="news__row"><span class="news__date">Aug 2025</span><span class="news__txt">Final day at <a class="ilink" href="https://www.siemens.com/en-us/company/digital-transformation/" target="_blank" rel="noopener noreferrer">Siemens</a>!</span></div>
+        <div class="news__row"><span class="news__date">Feb 2025</span><span class="news__txt">Joined <a class="ilink" href="https://www.siemens.com/en-us/company/digital-transformation/" target="_blank" rel="noopener noreferrer">Siemens Xcelerator</a> team as a marketing intern</span></div>
+        <div class="news__row"><span class="news__date">Sep 2023</span><span class="news__txt">Started my Undergrad at LCC, <a class="ilink" href="https://www.arts.ac.uk" target="_blank" rel="noopener noreferrer">UAL</a></span></div>
+        <div class="news__row"><span class="news__date">Jun 2023</span><span class="news__txt">SWE intern at <a class="ilink" href="https://www.yunextraffic.com" target="_blank" rel="noopener noreferrer">YUNEX Traffic</a></span></div>
         <div class="news__row"><span class="news__date">May 2023</span><span class="news__txt">Graduated from RDFZ Chaoyang Branch School, Beijing</span></div>
       </div>
     </section>
@@ -283,14 +285,14 @@
         <a class="card card--feature" href="projects/scentlink.html">
           <div class="card__frame"><img src="assets/cards/scentlink.png" alt="ScentLink — woven scent diffuser sculpture on a mirrored plinth" loading="lazy" /></div>
           <div class="card__meta">
-            <span class="card__cat">More-Than-Human Tangible Telepresence</span>
+            <span class="card__cat">More than human tangible telepresence</span>
             <span class="card__title">SCENTLINK<span class="arrow">→</span></span>
           </div>
         </a>
         <a class="card card--feature" href="projects/elegance.html">
           <div class="card__frame"><img src="assets/cards/elegance.png" alt="Elegance of Management — expense reimbursement app screens" loading="lazy" /></div>
           <div class="card__meta">
-            <span class="card__cat">Zero-Knowledge Reimbursement</span>
+            <span class="card__cat">Reimbursement, made simple</span>
             <span class="card__title">Elegance of Management<span class="arrow">→</span></span>
           </div>
         </a>
@@ -327,6 +329,12 @@
         </a>
       </div>
     </section>
+
+    <!-- SIGN-OFF -->
+    <section class="signoff" data-screen-label="signoff" aria-label="Sign-off">
+      <p class="signoff__line">“The Best Project Is Always The Next One”</p>
+      <p class="signoff__thanks">developed with generous help from Yixuan Chen, by Yuancheng Yang (updated June 2026)</p>
+    </section>
   </div>
 
   <!-- FOOTER -->
@@ -351,16 +359,16 @@
 
 <script>
   // Hero video: only request the file if it actually exists, so there's no
-  // 404 while the slot is empty. The moment you add assets/hero.mp4 (any
-  // common video name — edit the path below), it loads, plays and the
-  // placeholder hides automatically. No other markup changes needed.
+  // 404 while the slot is empty. Drop assets/hero.mp4 and it loads, plays
+  // and hides the fallback placeholder automatically. If the file is missing
+  // or can't play, the static placeholder text stays visible instead.
   (function () {
     var SRC = 'assets/hero.mp4';
     var v = document.querySelector('.hero__video');
     var ph = document.getElementById('heroPlaceholder');
     if (!v) return;
     fetch(SRC, { method: 'HEAD' }).then(function (res) {
-      if (!res.ok) return;            // no file yet → keep tonal placeholder
+      if (!res.ok) return;            // no file yet → keep placeholder
       v.src = SRC;
       v.play().catch(function () {});
       v.addEventListener('loadeddata', function () {
@@ -370,5 +378,6 @@
     }).catch(function () { /* offline / not found → keep placeholder */ });
   })();
 </script>
+
 </body>
 </html>

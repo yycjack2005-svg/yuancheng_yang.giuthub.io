@@ -4,12 +4,92 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Eddi’s Journey — Yuancheng Yang</title>
-<meta name="description" content="Eddi’s Journey — Short Film Proposal. Narrative · Motion. Work by Yuancheng (Jack) Yang." />
+<meta name="description" content="Eddi’s Journey — a short film carrying LCC’s Equality, Diversity and Inclusion principles, told through one small character. Yuancheng (Jack) Yang led the script drafting and narrative building." />
 <meta property="og:title" content="Eddi’s Journey — Yuancheng Yang" />
-<meta property="og:description" content="Short Film Proposal" />
+<meta property="og:description" content="A short film on Equality, Diversity and Inclusion for LCC, told through one small character." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ctext x='16' y='25' font-family='Georgia,serif' font-size='26' fill='%23c4bfb4' text-anchor='middle'%3EY%3C/text%3E%3C/svg%3E" />
 <link rel="stylesheet" href="../styles.css" />
 <link rel="stylesheet" href="../case.css" />
+<style>
+  /* EDI accent trio — Equality / Diversity / Inclusion, after the CMY of print */
+  :root {
+    --c-eq: oklch(0.76 0.11 220);   /* cyan  — equality */
+    --c-di: oklch(0.70 0.16 350);   /* magenta — diversity */
+    --c-in: oklch(0.85 0.13 95);    /* yellow — inclusion */
+  }
+
+  /* ---------- YouTube facade hero ---------- */
+  .film { margin-top: clamp(40px, 5vw, 84px); }
+  .ytlite {
+    position: relative; display: block; width: 100%; aspect-ratio: 16 / 9;
+    border: 0; padding: 0; margin: 0; cursor: pointer;
+    background: #000; border-radius: 18px; overflow: hidden;
+  }
+  .ytlite__thumb { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .3s; }
+  .ytlite:hover .ytlite__thumb { transform: scale(1.03); opacity: .92; }
+  .ytlite__play {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 86px; height: 86px; border-radius: 50%;
+    background: rgba(0,0,0,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.4);
+    display: grid; place-items: center; z-index: 2;
+    transition: transform .25s, background .25s;
+  }
+  .ytlite:hover .ytlite__play { transform: translate(-50%, -50%) scale(1.07); background: rgba(0,0,0,.72); }
+  .ytlite__play::before {
+    content: ""; border-style: solid; border-width: 13px 0 13px 22px;
+    border-color: transparent transparent transparent #fff; margin-left: 5px;
+  }
+  .ytlite__tag {
+    position: absolute; left: 18px; bottom: 16px; z-index: 2;
+    font-family: var(--mono); font-size: 12px; letter-spacing: .04em;
+    color: #fff; background: rgba(0,0,0,.5); border-radius: 999px; padding: 6px 12px;
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  }
+  .ytframe { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 18px; display: block; }
+  .film figcaption { font-family: var(--mono); font-size: 12px; color: var(--fg-dim); letter-spacing: .02em; margin-top: 14px; }
+
+  /* ---------- value groups (Equality / Diversity / Inclusion) ---------- */
+  .values { display: flex; flex-direction: column; gap: clamp(40px, 5vw, 72px); margin-top: clamp(26px, 3vw, 44px); }
+  .val--e { --bc: var(--c-eq); }
+  .val--d { --bc: var(--c-di); }
+  .val--i { --bc: var(--c-in); }
+  .valhead { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; border-bottom: 1px solid var(--fg-faint); padding-bottom: 16px; }
+  .valhead .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--bc); flex: none; }
+  .valhead h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 3vw, 40px); line-height: 1; letter-spacing: -0.01em; margin: 0; color: var(--bc); }
+  .valhead .sub { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--fg-dim); margin-left: auto; }
+
+  .beats { display: flex; flex-direction: column; gap: clamp(20px, 2.2vw, 30px); margin-top: clamp(22px, 2.4vw, 32px); }
+  .beat { border-left: 2px solid var(--bc); padding-left: clamp(16px, 2vw, 26px); }
+  .beat__id { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .beat__n { font-family: var(--mono); font-size: 13px; letter-spacing: .04em; color: var(--fg-dim); }
+  .beat__slug { font-weight: 500; font-size: clamp(16px, 1.5vw, 21px); letter-spacing: -0.01em; }
+  .beat__fields { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 1.6vw, 26px); }
+  .bf__l { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-dim); display: block; margin-bottom: 7px; }
+  .bf p { margin: 0; font-size: clamp(13px, 1.05vw, 15px); line-height: 1.5; color: var(--fg); text-wrap: pretty; }
+  .bf--quote p { color: var(--fg); }
+  .bf--muted p { color: var(--fg-dim); }
+
+  /* ---------- formalised screenplay ---------- */
+  .screenplay { font-family: var(--mono); margin-top: clamp(24px, 3vw, 42px); display: flex; flex-direction: column; gap: clamp(28px, 3.2vw, 46px); }
+  .sp { border-top: 1px solid var(--fg-faint); padding-top: clamp(18px, 2vw, 26px); }
+  .sp__slug { display: flex; align-items: center; gap: 10px; font-size: clamp(13px, 1.15vw, 16px); font-weight: 500; letter-spacing: .02em; margin: 0 0 16px; color: var(--fg); }
+  .sp__slug .tick { width: 9px; height: 9px; border-radius: 2px; background: var(--bc, var(--fg-dim)); flex: none; }
+  .sp__action { font-size: clamp(13px, 1.1vw, 15px); line-height: 1.62; margin: 0 0 14px; color: var(--fg); max-width: 72ch; }
+  .sp__action b { font-weight: 500; }
+  .sp__dia { margin: 0 auto 14px; max-width: 46ch; }
+  .sp__char { text-align: center; font-size: clamp(13px, 1.1vw, 15px); letter-spacing: .08em; margin: 0 0 3px; color: var(--fg); }
+  .sp__line { text-align: center; font-size: clamp(13px, 1.1vw, 15px); line-height: 1.5; margin: 0; color: var(--fg-dim); }
+  .sp--e { --bc: var(--c-eq); } .sp--d { --bc: var(--c-di); } .sp--i { --bc: var(--c-in); }
+
+  @media (max-width: 940px) {
+    .beat__fields { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .beat__fields { grid-template-columns: 1fr; }
+    .valhead .sub { margin-left: 0; flex-basis: 100%; }
+  }
+</style>
 </head>
 <body>
 
@@ -22,40 +102,240 @@
 </header>
 
 <main>
+  <!-- ===== HERO ===== -->
   <section class="shell case-hero" data-screen-label="case-hero">
-    <span class="eyebrow">Short Film Proposal</span>
+    <span class="eyebrow">Short film · EDI principles for LCC</span>
     <h1 class="case-title">Eddi’s Journey</h1>
     <div class="case-meta">
-      <dl><dt>Discipline</dt><dd>Narrative · Motion</dd></dl>
-      <dl><dt>Year</dt><dd style="color:var(--fg-dim)">Add year</dd></dl>
-      <dl><dt>Role</dt><dd style="color:var(--fg-dim)">Add your role</dd></dl>
+      <dl><dt>Timeline</dt><dd>Oct 2025 – Jan 2026 · 7 weeks</dd></dl>
+      <dl><dt>For</dt><dd>LCC Equality, Diversity &amp; Inclusion team</dd></dl>
+      <dl><dt>Team</dt><dd>A cross-discipline collaborative project; individual roles detailed below</dd></dl>
+      <dl><dt>My role</dt><dd>Script drafting · practical narrative building</dd></dl>
+      <dl><dt>Outcome</dt><dd>A stop-motion short film and final film proposal</dd></dl>
     </div>
   </section>
 
-  <figure class="case-figure">
-    <div class="frame"><img src="../assets/eddi.jpg" alt="Eddi’s Journey" /></div>
-    <figcaption>Eddi’s Journey — character development sheet</figcaption>
+  <!-- ===== FILM (YouTube facade) ===== -->
+  <figure class="shell case-photo film" data-screen-label="film">
+    <button class="ytlite" id="ytPlay" type="button" aria-label="Play Eddi’s Journey on YouTube">
+      <img class="ytlite__thumb" src="https://i.ytimg.com/vi/rqRbsPTD9WA/maxresdefault.jpg" alt="Eddi’s Journey — a still from the finished short film" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/rqRbsPTD9WA/hqdefault.jpg'" />
+      <span class="ytlite__play" aria-hidden="true"></span>
+      <span class="ytlite__tag">Watch · 2 min</span>
+    </button>
+    <figcaption>Eddi’s Journey — the finished short film. Press play to watch it here, straight from YouTube.</figcaption>
   </figure>
 
-  <div class="shell">
-    <article class="prose">
-      <p class="lead">A short-film proposal following Eddi, a small character finding their way through an unfamiliar institution — a study in how environment and design shape a newcomer’s first journey.</p>
+  <div class="shell case-body">
 
-      <h2>The Brief</h2>
-      <div class="fill">Replace this block with the project brief — the question or problem you set out to explore, who it was for, and the constraints you worked within. <b>(Editable placeholder.)</b></div>
+    <!-- ===== OVERVIEW ===== -->
+    <section class="csec" data-screen-label="sec-overview" style="border-top:none;margin-top:clamp(48px,6vw,90px);padding-top:0;">
+      <div class="overview">
+        <p class="hook">Eddi’s Journey is a short film about a small character learning that equality, diversity and inclusion are things a place does, not things it prints on a poster.</p>
+        <p>The brief came from LCC’s Equality, Diversity and Inclusion team: make a short film that carries EDI principles to the LCC community without lecturing anyone. We answered with Eddi, a small non-human guide who arrives at LCC as a complete outsider and slowly finds a way in. The name is the whole idea — E, D, I, told through one character moving across campus, with the three letters built from the cyan, magenta and yellow of print.</p>
+        <p>We worked as a cross-discipline team of five, and my part was the writing. I shaped the scene structure and turned it into the formalised script, so the rest of the team had a clear, shootable spine to animate, design and edit against. The structure stays deliberately simple: three values, eight scenes, one continuous arc from locked out to standing up.</p>
+      </div>
+      <div class="quals" aria-label="Project qualities">
+        <span>EDI principles</span>
+        <span>Character-led</span>
+        <span>Three values, one arc</span>
+        <span>Written to be shot</span>
+        <span>Plain, not preachy</span>
+      </div>
+    </section>
 
-      <h2>Approach</h2>
-      <div class="fill">Walk through your process — research, experiments, iterations, key decisions. Add as many paragraphs as you like. <b>(Editable placeholder.)</b></div>
+    <!-- ===== ROLES ===== -->
+    <section class="roles" data-screen-label="sec-roles">
+      <div>
+        <h3>Collaboration — Group 4H, order non-hierarchical</h3>
+        <ul>
+          <li><b>Fiona Du</b><span>Illustration · character design</span></li>
+          <li><b>Tinu Ogunmefun</b><span>Graphic · motion &amp; editing</span></li>
+          <li><b>Yi (Alyssa) Qu</b><span>UX · research &amp; sound</span></li>
+          <li><b>Joshua Landell-Jackson</b><span>Art direction · creative framing</span></li>
+        </ul>
+      </div>
+      <div class="mine">
+        <h3>My contribution — Jack (UX)</h3>
+        <p>I owned the script. I broke the film into a scene-by-scene structure, mapped each beat to one of the three EDI values, then wrote the formalised screenplay the team produced from. Simple job, clearly defined: give a stop-motion film a spine that reads on the page before it is ever shot.</p>
+        <div class="tags">
+          <span>Scene structure</span><span>Screenwriting</span><span>Narrative spine</span><span>Tone principles</span>
+        </div>
+      </div>
+    </section>
 
-      <div class="slot"><span>Process image — replace with ../assets/your-image.jpg</span></div>
+    <!-- ===== 01 STRUCTURE THE DRAFT ===== -->
+    <article class="move" data-screen-label="sec-draft">
+      <div class="move__head"><span class="move__n">01</span><h2 class="move__t">Structure the draft</h2></div>
+      <p class="move__d">Before any dialogue, I laid the film out as a grid. Eight scenes, split across the three values, with each beat tracked on four things: the set-up the camera sees, Eddi’s inner thought, the on-screen action, and the line, if any. Keeping thought and action in separate columns kept the emotion legible and stopped the script from explaining itself.</p>
 
-      <h2>Outcome</h2>
-      <div class="fill">What did you make, what did you learn, where could it go next? <b>(Editable placeholder.)</b></div>
+      <div class="values">
+        <!-- EQUALITY -->
+        <div class="val--e">
+          <div class="valhead"><span class="dot"></span><h3>Equality</h3><span class="sub">Scenes 01–02 · getting through the door</span></div>
+          <div class="beats">
+            <div class="beat">
+              <div class="beat__id"><span class="beat__n">01</span><span class="beat__slug">LCC Main Entrance</span></div>
+              <div class="beat__fields">
+                <div class="bf"><span class="bf__l">Set-up</span><p>EXT. LCC main entrance. Students flow in and out; Eddi hovers outside, watching the motion, wanting to enter.</p></div>
+                <div class="bf"><span class="bf__l">Thought</span><p>I want to get inside…</p></div>
+                <div class="bf"><span class="bf__l">Action</span><p>Eddi reaches the information desk, finds a scattered pile of ID cards. One glows softly; Eddi picks it up and it absorbs in a surge of light.</p></div>
+                <div class="bf bf--quote"><span class="bf__l">Dialogue</span><p>Officer: “With this card, everyone gets the same chance at LCC.”</p></div>
+              </div>
+            </div>
+            <div class="beat">
+              <div class="beat__id"><span class="beat__n">02</span><span class="beat__slug">Digital Workshop</span></div>
+              <div class="beat__fields">
+                <div class="bf"><span class="bf__l">Set-up</span><p>INT. digital workshop, continuous. Students use different tools and tech; Eddi drifts through, curious.</p></div>
+                <div class="bf"><span class="bf__l">Thought</span><p>I want to learn these skills… but I need more foundation.</p></div>
+                <div class="bf"><span class="bf__l">Action</span><p>Eddi follows the library sign deeper inside.</p></div>
+                <div class="bf bf--muted"><span class="bf__l">Dialogue</span><p>None — carried by action.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DIVERSITY -->
+        <div class="val--d">
+          <div class="valhead"><span class="dot"></span><h3>Diversity</h3><span class="sub">Scenes 03–05 · difference, and a way in</span></div>
+          <div class="beats">
+            <div class="beat">
+              <div class="beat__id"><span class="beat__n">03</span><span class="beat__slug">Library Bookshelves</span></div>
+              <div class="beat__fields">
+                <div class="bf"><span class="bf__l">Set-up</span><p>INT. library. Eddi scans a bookshelf for the “right book”.</p></div>
+                <div class="bf"><span class="bf__l">Thought</span><p>Maybe I need to talk to someone…?</p></div>
+                <div class="bf"><span class="bf__l">Action</span><p>Eddi pauses, uncertain.</p></div>
+                <div class="bf bf--muted"><span class="bf__l">Dialogue</span><p>None.</p></div>
+              </div>
+            </div>
+            <div class="beat">
+              <div class="beat__id"><span class="beat__n">04</span><span class="beat__slug">Group Discussion Area</span></div>
+              <div class="beat__fields">
+                <div class="bf"><span class="bf__l">Set-up</span><p>INT. group discussion area. A group of students brainstorm together; Eddi stays at the edge, wanting to join but frozen.</p></div>
+                <div class="bf"><span class="bf__l">Thought</span><p>I want to join… but I don’t know how to speak up.</p></div>
+                <div class="bf"><span class="bf__l">Action</span><p>Eddi hovers at the edge, expression turning anxious, and steps back.</p></div>
+                <div class="bf bf--quote"><span class="bf__l">Dialogue</span><p>Eddi: “…how do I even join in?”</p></div>
+              </div>
+            </div>
+            <div class="beat">
+              <div class="beat__id"><span class="beat__n">05</span><span class="beat__slug">Finding Support</span></div>
+              <div class="beat__fields">
+                <div class="bf"><span class="bf__l">Set-up</span><p>INT. same area, later.</p></div>
+                <div class="bf"><span class="bf__l">Thought</span><p>I just need a way in.</p></div>
+                <div class="bf"><span class="bf__l">Action</span><p>Eddi spots a glowing sticky note on a bulletin board and absorbs it, like the card. A blank note flickers into hand; Eddi writes an idea and adds it to the group’s board.</p></div>
+                <div class="bf bf--quote"><span class="bf__l">Dialogue</span><p>Eddi: “I can use this!”</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INCLUSION -->
+        <div class="val--i">
+          <div class="valhead"><span class="dot"></span><h3>Inclusion</h3><span class="sub">Scenes 06–08 · support, and standing up</span></div>
+          <div class="beats">
+            <div class="beat">
+              <div class="beat__id"><span class="beat__n">06</span><span class="beat__slug">Preparing a Presentation</span></div>
+              <div class="beat__fields">
+                <div class="bf"><span class="bf__l">Set-up</span><p>MONTAGE, short. Eddi works on a project, then has to present it, and hesitates, nervous.</p></div>
+                <div class="bf"><span class="bf__l">Thought</span><p>Presenting to others… this is so hard.</p></div>
+                <div class="bf"><span class="bf__l">Action</span><p>Eddi searches for help and finds the Academic Support room.</p></div>
+                <div class="bf bf--quote"><span class="bf__l">Dialogue</span><p>Eddi: “Presenting to others… this is so hard.”</p></div>
+              </div>
+            </div>
+            <div class="beat">
+              <div class="beat__id"><span class="beat__n">07</span><span class="beat__slug">Academic Support</span></div>
+              <div class="beat__fields">
+                <div class="bf"><span class="bf__l">Set-up</span><p>INT. classroom. An Academic Support Officer coaches Eddi.</p></div>
+                <div class="bf"><span class="bf__l">Thought</span><p>I’m improving — posture, voice, confidence.</p></div>
+                <div class="bf"><span class="bf__l">Action</span><p>Eddi practices, steadier on each take.</p></div>
+                <div class="bf bf--quote"><span class="bf__l">Dialogue</span><p>Eddi: “I can do this!”</p></div>
+              </div>
+            </div>
+            <div class="beat">
+              <div class="beat__id"><span class="beat__n">08</span><span class="beat__slug">Final Presentation</span></div>
+              <div class="beat__fields">
+                <div class="bf"><span class="bf__l">Set-up</span><p>INT. presentation space. Eddi stands before a small audience.</p></div>
+                <div class="bf"><span class="bf__l">Thought</span><p>I’m ready.</p></div>
+                <div class="bf"><span class="bf__l">Action</span><p>A deep breath; Eddi smiles, prepared.</p></div>
+                <div class="bf bf--quote"><span class="bf__l">Dialogue</span><p>Eddi: “…(inhale)… I’m ready.”</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </article>
 
-    <a class="next" href="it-had-to-fit.html" data-screen-label="next-project">
-      <span><span class="lbl">Next project</span><br><span class="ttl">It Had to Fit</span></span>
-      <span class="ar">→</span>
+    <!-- ===== 02 FORMALISE THE SCRIPT ===== -->
+    <article class="move" data-screen-label="sec-script">
+      <div class="move__head"><span class="move__n">02</span><h2 class="move__t">Formalise the script</h2></div>
+      <p class="move__d">From the grid I wrote the shootable version: standard screenplay format, slug lines, action and dialogue. Inner thoughts became spoken lines or were folded into what the camera sees, so the team could read a scene once and know exactly what to build. Same eight scenes, same three values, now in a form a director and editor can work from.</p>
+
+      <div class="screenplay">
+        <div class="sp sp--e">
+          <p class="sp__slug"><span class="tick"></span>01 — EXT. LCC MAIN ENTRANCE — DAY</p>
+          <p class="sp__action">Students flow in and out. <b>Eddi</b> hovers outside, watching the motion, wanting to enter.</p>
+          <div class="sp__dia"><p class="sp__char">EDDI</p><p class="sp__line">I want to get inside…</p></div>
+          <p class="sp__action">Eddi approaches the information desk and notices a scattered pile of ID cards. A card glows softly; Eddi picks it up and it absorbs in with a small surge of light.</p>
+          <div class="sp__dia"><p class="sp__char">INFORMATION DESK OFFICER</p><p class="sp__line">With this card, everyone gets the same chance at LCC.</p></div>
+          <p class="sp__action">Eddi steps forward, encouraged.</p>
+        </div>
+
+        <div class="sp sp--e">
+          <p class="sp__slug"><span class="tick"></span>02 — INT. DIGITAL WORKSHOP — CONTINUOUS</p>
+          <p class="sp__action">Students use different tools and tech. <b>Eddi</b> wanders curiously, drawn to the activity.</p>
+          <div class="sp__dia"><p class="sp__char">EDDI</p><p class="sp__line">I want to learn these skills… but I need more foundation.</p></div>
+          <p class="sp__action">Eddi follows the library sign inside.</p>
+        </div>
+
+        <div class="sp sp--d">
+          <p class="sp__slug"><span class="tick"></span>03 — INT. LIBRARY — DAY</p>
+          <p class="sp__action"><b>Eddi</b> browses a bookshelf, scanning for the “right book.”</p>
+          <div class="sp__dia"><p class="sp__char">EDDI</p><p class="sp__line">Maybe I need to talk to someone…?</p></div>
+          <p class="sp__action">Eddi pauses, uncertain.</p>
+        </div>
+
+        <div class="sp sp--d">
+          <p class="sp__slug"><span class="tick"></span>04 — INT. GROUP DISCUSSION AREA — DAY</p>
+          <p class="sp__action">A group of students chat, brainstorming together. <b>Eddi</b> stays at the edge, wanting to join but frozen.</p>
+          <div class="sp__dia"><p class="sp__char">EDDI</p><p class="sp__line">I want to join… but I don’t know how to speak up.</p></div>
+          <p class="sp__action">Eddi looks anxious, stepping back.</p>
+        </div>
+
+        <div class="sp sp--d">
+          <p class="sp__slug"><span class="tick"></span>05 — INT. SAME AREA — LATER</p>
+          <p class="sp__action"><b>Eddi</b> looks around and spots a glowing sticky note on a bulletin board. It pulses gently. Eddi touches it and it absorbs in, just like the card.</p>
+          <div class="sp__dia"><p class="sp__char">EDDI</p><p class="sp__line">I can use this!</p></div>
+          <p class="sp__action">Eddi returns to the discussion circle, clutching the glowing note. A new blank one flickers into hand — Eddi writes a quick idea and places it on the group’s board. The students notice, nodding. Eddi adds another, and the group naturally opens space for Eddi to join in.</p>
+        </div>
+
+        <div class="sp sp--i">
+          <p class="sp__slug"><span class="tick"></span>06 — MONTAGE: PREPARING A PRESENTATION</p>
+          <p class="sp__action"><b>Eddi</b> works on a project. Eddi practices speaking, but struggles. Eddi hesitates, frustrated.</p>
+          <div class="sp__dia"><p class="sp__char">EDDI</p><p class="sp__line">Presenting to others… this is so hard.</p></div>
+          <p class="sp__action">Eddi searches for help and finds the Academic Support room.</p>
+        </div>
+
+        <div class="sp sp--i">
+          <p class="sp__slug"><span class="tick"></span>07 — INT. CLASSROOM — DAY</p>
+          <p class="sp__action">An Academic Support Officer coaches <b>Eddi</b>. Eddi practices posture, voice, confidence.</p>
+          <div class="sp__dia"><p class="sp__char">EDDI</p><p class="sp__line">I can do this!</p></div>
+        </div>
+
+        <div class="sp sp--i">
+          <p class="sp__slug"><span class="tick"></span>08 — INT. PRESENTATION SPACE — DAY</p>
+          <p class="sp__action"><b>Eddi</b> stands before a small audience. A deep breath.</p>
+          <div class="sp__dia"><p class="sp__char">EDDI</p><p class="sp__line">…(inhale)… I’m ready.</p></div>
+          <p class="sp__action">Eddi smiles, prepared.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- closing -->
+    <p class="closing">The whole film rests on one small idea: belonging is something you build scene by scene, not something you are handed at the door.</p>
+
+    <!-- back to homepage -->
+    <a class="next next--back" href="../index.html" data-screen-label="back-home">
+      <span class="ar">←</span>
+      <span><span class="lbl">Back to</span><br><span class="ttl">All work</span></span>
     </a>
   </div>
 
@@ -75,5 +355,21 @@
   <a href="mailto:y_yuancheng@outlook.com">Email</a>
   <a href="tel:+447741729999">Call</a>
 </nav>
+
+<script>
+  (function () {
+    var btn = document.getElementById('ytPlay');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.className = 'ytframe';
+      f.src = 'https://www.youtube.com/embed/rqRbsPTD9WA?autoplay=1&rel=0&modestbranding=1';
+      f.title = 'Eddi’s Journey';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; clipboard-write; web-share';
+      f.setAttribute('allowfullscreen', '');
+      btn.replaceWith(f);
+    });
+  })();
+</script>
 </body>
 </html>

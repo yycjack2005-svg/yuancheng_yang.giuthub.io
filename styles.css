@@ -89,6 +89,16 @@ body {
 
 a { color: inherit; text-decoration: none; }
 
+/* inline text hyperlinks (bio, news) — visibly underlined, jumps out to the site */
+.ilink {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--fg-dim);
+  transition: text-decoration-color .2s, opacity .2s;
+}
+.ilink:hover { text-decoration-color: var(--fg); opacity: .75; }
+
 img { display: block; max-width: 100%; }
 
 .shell {

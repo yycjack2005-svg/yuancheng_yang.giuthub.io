@@ -4,12 +4,80 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>It Had to Fit — Yuancheng Yang</title>
-<meta name="description" content="It Had to Fit — Research Essay. Design Research · Writing. Work by Yuancheng (Jack) Yang." />
+<meta name="description" content="It Had to Fit: What a drysuit assumes about women. A research essay for Design Cultures / Consumer Culture by Yuancheng (Jack) Yang, using Level Six's Freya drysuit as a case study." />
 <meta property="og:title" content="It Had to Fit — Yuancheng Yang" />
-<meta property="og:description" content="Research Essay" />
+<meta property="og:description" content="What a drysuit assumes about women — a research essay on gender, fit and technical gear." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ctext x='16' y='25' font-family='Georgia,serif' font-size='26' fill='%23c4bfb4' text-anchor='middle'%3EY%3C/text%3E%3C/svg%3E" />
 <link rel="stylesheet" href="../styles.css" />
 <link rel="stylesheet" href="../case.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+<style>
+  /* essay subtitle under the case title */
+  .case-subtitle {
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: clamp(24px, 3.4vw, 46px); line-height: 1.08; letter-spacing: -0.01em;
+    color: var(--fg); margin: clamp(10px, 1.4vw, 18px) 0 0; max-width: none; white-space: nowrap;
+  }
+
+  /* long-form reading column — Medium-like, on the site's black */
+  .essay { margin-top: clamp(48px, 6vw, 90px); }
+  .essay p {
+    font-family: "Noto Serif", Georgia, serif; font-weight: 400;
+    font-size: clamp(17px, 1.32vw, 20px); line-height: 1.72; letter-spacing: -0.03em;
+    color: var(--fg); margin: 0 0 1.35em; max-width: none; text-wrap: pretty;
+  }
+  .essay p em { font-style: italic; }
+
+  /* full-width figures, same content width as hero images on other pages */
+  .essay figure { margin: clamp(40px, 5vw, 76px) 0; }
+  .essay figure img {
+    width: 100%; height: auto; display: block; border-radius: 14px;
+    border: 1px solid rgba(196,191,180,.14);
+  }
+  .essay figcaption {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .02em;
+    color: var(--fg-dim); margin-top: 14px; max-width: none; text-align: center;
+  }
+
+  /* closing line reuses .closing from case.css */
+
+  /* ---- bibliography, same dark theme ---- */
+  .biblio { border-top: 1px solid var(--fg-faint); margin-top: clamp(64px, 8vw, 120px); padding-top: clamp(30px, 3.4vw, 48px); }
+  .biblio__h {
+    font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 4.4vw, 60px);
+    line-height: 1; letter-spacing: -0.02em; margin: 0 0 clamp(28px, 3.2vw, 44px);
+  }
+  .kr { border-top: 1px solid var(--fg-faint); padding-top: clamp(18px, 2vw, 26px); margin-top: clamp(30px, 3.4vw, 46px); }
+  .kr:first-of-type { margin-top: 0; }
+  .kr__n { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-dim); margin: 0 0 clamp(16px, 1.8vw, 24px); }
+  .kr__row { display: grid; grid-template-columns: 0.5fr 1.5fr; gap: clamp(16px, 2.4vw, 40px); padding: clamp(14px, 1.5vw, 20px) 0; border-top: 1px solid var(--fg-faint); }
+  .kr__row:first-of-type { border-top: none; padding-top: 0; }
+  .kr__l { font-family: var(--mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--fg-dim); line-height: 1.4; }
+  .kr__c { font-family: "Noto Serif", Georgia, serif; font-size: clamp(14px, 1.15vw, 16.5px); line-height: 1.6; letter-spacing: -0.005em; color: var(--fg); margin: 0; }
+  .kr__c em { font-style: italic; }
+  .kr__c .src { display: block; font-style: italic; color: var(--fg-dim); margin-top: 8px; font-size: .92em; }
+  .kr__c.q { font-style: italic; }
+
+  /* additional references */
+  .refs { border-top: 1px solid var(--fg-faint); margin-top: clamp(40px, 5vw, 72px); padding-top: clamp(26px, 3vw, 40px); }
+  .refs__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 64px); }
+  .refs__sub { font-family: var(--mono); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--fg-dim); margin: 0 0 clamp(16px, 2vw, 24px); }
+  .refs__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: clamp(14px, 1.6vw, 20px); }
+  .refs__list li {
+    font-family: "Noto Serif", Georgia, serif; font-size: clamp(13px, 1.05vw, 15px); line-height: 1.5;
+    letter-spacing: -0.005em; color: var(--fg-dim); word-break: break-word;
+  }
+  .refs__list li b { color: var(--fg); font-weight: 600; }
+  .refs__list li em { font-style: italic; color: var(--fg); }
+
+  @media (max-width: 760px) {
+    .case-subtitle { white-space: normal; }
+    .kr__row { grid-template-columns: 1fr; gap: 6px; }
+    .refs__grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
@@ -22,40 +90,163 @@
 </header>
 
 <main>
+  <!-- ===== HERO ===== -->
   <section class="shell case-hero" data-screen-label="case-hero">
-    <span class="eyebrow">Research Essay</span>
+    <span class="eyebrow">Research essay · Design Cultures</span>
     <h1 class="case-title">It Had to Fit</h1>
+    <p class="case-subtitle">What a drysuit assumes about women</p>
     <div class="case-meta">
-      <dl><dt>Discipline</dt><dd>Design Research · Writing</dd></dl>
-      <dl><dt>Year</dt><dd style="color:var(--fg-dim)">Add year</dd></dl>
-      <dl><dt>Role</dt><dd style="color:var(--fg-dim)">Add your role</dd></dl>
+      <dl><dt>Timeline</dt><dd>May 2026</dd></dl>
+      <dl><dt>Discipline</dt><dd>Design writing · Consumer culture</dd></dl>
     </div>
   </section>
 
-  <figure class="case-figure">
-    <div class="frame"><img src="../assets/ithadtofit.jpg" alt="It Had to Fit" /></div>
-    <figcaption>It Had to Fit — fieldwork reference imagery</figcaption>
-  </figure>
+  <div class="shell case-body">
+    <article class="essay" data-screen-label="essay">
 
-  <div class="shell">
-    <article class="prose">
-      <p class="lead">A research essay on how performance gear gets designed for women’s bodies — and what “it had to fit” really asks of design, inclusion and the people equipment is built around.</p>
+      <p>Technical equipment likes to present itself as neutral. A drysuit is a problem-solving object, its waterproof fabrics, sealed necks, taped seams, zips, reinforced panels and rationale all seem entirely practical before it feels cultural. But each of those decisions are made imagining a body before a user ever puts it on. It assumes where that body bends, how it sits, how it layers, how it enters and exits the suit, how it handles hours without bathroom access, how much discomfort it is expected to absorb quietly.</p>
 
-      <h2>The Brief</h2>
-      <div class="fill">Replace this block with the project brief — the question or problem you set out to explore, who it was for, and the constraints you worked within. <b>(Editable placeholder.)</b></div>
+      <p>In November 2024 Level Six launched the Freya Drysuit Design Feedback Survey, collecting measurements, fit problems, and personal stories from women’s-fit and non-unisex drysuit users (Level Six, 2024b). That data helped craft the 2026 Freya, which was presented as a women’s drysuit designed “from the ground up” for female paddlers, pulled from 480 submissions (Marquardt, 2025). This is an answer to years of women’s outdoor gear being stuck in the logic of “shrink it and pink it” (Marquardt, 2025). This essay uses the Freya as a small case study of a larger question: what happens when women’s technical gear is treated as a realistic design problem, rather than an aesthetic variant? It’s not interesting because Level Six did something outstanding. It is interesting because the survey had to have existed at all.</p>
 
-      <h2>Approach</h2>
-      <div class="fill">Walk through your process — research, experiments, iterations, key decisions. Add as many paragraphs as you like. <b>(Editable placeholder.)</b></div>
+      <p>The presumption of male universality is both a cause and effect of the gender data gap: male experience is general experience, and women are positioned as a minority or ‘niche’ point of view (Criado-Perez, 2019). The same argument applies to technical gear, but it doesn’t sell itself. The issue is seldom that someone is left out. Looks like size, lack of access, hip discomfort, a yanking torso, a zip that stops the bad move. A fit problem is a design assumption that has not generally been questioned, because the body it failed was never the body the creator envisioned (Reuther, 2025).</p>
 
-      <div class="slot"><span>Process image — replace with ../assets/your-image.jpg</span></div>
+      <p>“Shrink it and pink it” names this failure bluntly. It’s usually used to criticise women’s products that are made by taking a male (or unisex) product, making it smaller, changing the colour, and calling it done. Aesthetics and design cues like proportion, shape, colour, surface, texture and weight can gender products and read them as masculine or feminine, not just use (Van Tilburg et al., 2015). Designed objects are also to be implicated in the construction of ideas about who those users are and what roles they occupy (Forty, 1986). Thus gender is an assumption made relevant in product design.</p>
 
-      <h2>Outcome</h2>
-      <div class="fill">What did you make, what did you learn, where could it go next? <b>(Editable placeholder.)</b></div>
+      <p>Many products allow for a fairly readable gender. And while it’s possible to sex a razor or a scent bottle by surface and still make it work, a drysuit can’t make that trade-off. In cold water paddling, Entwistle’s argument that dress is always a situated bodily practice becomes almost literal: seated posture pressing on hips and knees, layers underneath competing for space, boat entry demands specific ranges of motion, hours of exposure requiring bathroom access the garment must accommodate (Entwistle, 2015). The suit doesn’t fit the picture. It’s subject to the elements, to water and time and if it doesn’t hold up to any one of those, the activity changes. The materiality of clothing is a key part of its meaning and the person and garment become intertwined in ways that are often overlooked by research that focuses on representation (Woodward and Fisher, 2014). Artefacts have politics; that is, the social relations assumed by a designer become part of the object, and those relations are still in use whether they were ever consciously chosen or not (Winner, 1980). Drysuits constructed around a male body already determine which movement matters.</p>
+
+      <figure>
+        <img src="../assets/ithadtofit/fig1.jpg" alt="Level Six Freya Drysuit Survey banner: a woman paddling whitewater under the headline WOMENS GEAR IS CHANGING, GIVE US YOUR THOUGHTS" loading="lazy" />
+        <figcaption>Figure 1. Main banner from Level Six’s Freya Drysuit Survey (Level Six, 2024c).</figcaption>
+      </figure>
+
+      <p>Level Six’s banner for their 2024 research does not present this product as being ready for the rigours of wipeouts. A paddler appears to be extended, smiling and enjoying in an environment that is dangerous to her, and entirely at home in the situation. The image is captured in an alternative way than most photographs of gear. The paddler already has a capable body; the brand now must continue to develop to keep up with her. What complicates the image is its own footnote, at the very bottom, the brand’s designer left a note inside the finished campaign: the pink in the typography matched the boat, she writes, and she finds this conflicting. The banner announces that women’s gear is changing carries, inside itself, the evidence that the assumptions being changed are still shaping the decisions being made.</p>
+
+      <p>The wording indeed matters. Level Six’s survey page says its paddling community is changing, that the brand wants to reflect that, and that the team has an opportunity to update the Freya “from the ground up”. It asks for input from the community because, as the page puts it, “we need input from the community” (Level Six, 2024a). The image therefore turns bodily experience into a public design prompt. It asks women paddlers to speak because the old product logic did not speak well enough for them.</p>
+
+      <figure>
+        <img src="../assets/ithadtofit/fig2.jpg" alt="Screenshot of Level Six's Freya Drysuit Survey page headed A COMMITMENT TO INNOVATION, asking the paddling community for feedback" loading="lazy" />
+        <figcaption>Figure 2. Screenshot from Level Six’s Freya Drysuit Survey page (Level Six, 2024a).</figcaption>
+      </figure>
+
+      <p>This could be read generously as participatory design. It could also be read as a marketing move. Both are true enough. Banet-Weiser argues that brand culture should be interpreted through the lens of ambivalence, where both the economic need for profit and authenticity/intentions are expressed simultaneously rather than through distinct moral paradigms (Banet-Weiser, 2012). The Freya survey depends on that ambivalence. The call for feedback feels sincere because the problem is real. It also gives Level Six a powerful position: the brand becomes the one that listens.</p>
+
+      <figure>
+        <img src="../assets/ithadtofit/fig3.jpg" alt="Level Six technical feature diagram for the 2026 Freya women's dry suit, with annotated front and back views in merlot and crater blue" loading="lazy" />
+        <figcaption>Figure 3. Level Six technical feature diagram used as announcement page hero for the 2026 Freya (Level Six, 2026a).</figcaption>
+      </figure>
+
+      <p>The announcement page hero of 2026 Freya provide solid visual support for the departure of the campaign theme and transition into a constructional phase of manufacturing. The illustrations consist of forward- and rear-facing views of the suit and use arrows and text to indicate the increased height of tunnel, neoprene punched through neck area, relief zipper, increases in curve to increase range of motion, new fit from Freya Fit Survey, articulated elbows, articulated knees, reduced failure points and an updated zipper placement. This set of illustrations serves as a “physical” representation of the politics associated with the Freya 2026.</p>
+
+      <p>The Relief Zipper does not fall into the category of being a symbolic detail on the Freya 2026; instead, it alters the way an individual with a sealed suit will manage their body. Through the use of articulated knee and elbow styles, these items do not signify the presence of femininity; these items are simply utilitarian based on methods of movement. The reduced amount of panelling should not signify visual restraint, rather, it represents a method to reduce the risk of garment failure; the failure of a garment may cause cold water to enter into the suit (Level Six, 2026b). Therefore, all of this represents functional performance; none of these items were based on appearance; and these examples provide a means for identifying specific physical features that had been incorrectly constructed and/or represented by the earlier drysuit pattern.</p>
+
+      <p>Designed objects embody social arrangements without declaring them as ideology (Winner, 1980). The old drysuit pattern did not announce that it was built around a male body. It simply had seams and panels, and missing accommodations, and women wore the consequences. What the Freya diagram makes visible is that the correction is also a documentation, each revised feature is a named site where the previous assumption failed. Knowledge is always produced from a specific position, never from nowhere (Haraway, 1991). The “universal” drysuit pattern was universal only for the body that designed it. The survey made that visible by collecting the bodies it had excluded.</p>
+
+      <p>The technical specs of the 2026 Freya – recycled fabric that is PFAS free, waterproof and breathable – keep it inside the language of serious outdoor gear (The Paddle Sports Show, 2025). The diagram is not just to be viewed as a representation of the paddler; rather, it is making a performance claim and using the technical language of the outdoor community in order to differentiate serious versus casual users. Bourdieu points out that taste creates the classifier; therefore, knowledge of what is of value, creates the feeling of belonging, as much as the actual product does (Bourdieu, 2010). The distinction between a double tunnel height and articulated knee is functional, but it is also indicative of a paddler as someone the culture takes seriously. A product that assumes women need a revised relief zipper placement positions them as technical users with legitimate demands on the gear. The new Freya’s announcement diagram is, among other things, an argument about who counts as a serious paddler in ways that are illustrated, instead of articulated, through the number of annotations within the diagram.</p>
+
+      <figure>
+        <img src="../assets/ithadtofit/fig4.jpg" alt="Level Six product page for the Freya Women's Dry Suit, showing colour and size selectors, price and an Add to cart button" loading="lazy" />
+        <figcaption>Figure 4. Level Six product page for the Freya Women’s Dry Suit (Level Six, no date a).</figcaption>
+      </figure>
+
+      <p>The Freya product page cannot exist solely within a correction framework. Rather, it reverts back to a page where you have all the elements of a retail experience such as price, size selector, stock warning, and a buy button. Yet it is presented in a style that invokes confidence, fit and community.</p>
+
+      <p>The commercial nature of the Freya’s design is not coincidental. The technical aspects that make a drysuit useful and desirable are included in its saleability. The informed female paddler, the serious outdoor user, the person whose body was finally measured correctly – these are identities the product now offers for purchase.</p>
+
+      <p>The community-driven banner makes the conversion explicit: a paddler crosses wet rock carrying a bright pink kayak, and the redesign acquires an emotional shape. Listening. Correction. Belonging. Progress. The image on the product page does not represent a quantitative value; the image represents a story and alluded to in the redesign and is part of what Level Six sells.</p>
+
+      <figure>
+        <img src="../assets/ithadtofit/fig5.jpg" alt="Level Six banner UPDATED FREYA COMMUNITY DRIVEN CHANGE: a paddler carries a bright pink kayak across wet rock in the rain" loading="lazy" />
+        <figcaption>Figure 5. Banner from Level Six’s “A Community Driven Fit” narrative for the updated Freya (Level Six, no date b).</figcaption>
+      </figure>
+
+      <p>The Freya represents the function of the Arvidsson mechanism throughout the entire branded experience. The women’s size measurements provide the information for the design, the design provides the basis for product development, and product development provides the basis for the branded story, which then becomes checkout (Arvidsson, 2006). This process does not require cynicism to function. Authenticity and economic value reinforce each other, and the Freya’s power as a campaign comes precisely from the fact that the problem was real (Banet-Weiser, 2012). Genuine dissatisfaction produces an authentic and sincere product message, and that authentic and sincere message produces sales.</p>
+
+      <p>The woman excluded by poor technical fit is not discarded like a garment. The exclusion is subtler with she compromising and tolerating restriction, treats discomfort as personal inconvenience. The product persists while her participation erodes. Chapman’s argument regarding designed obsolescence applies at the level of experience rather than the level of physical material; function can be designed out of existence before a person ever wears the product, and women carry that failure of functionality in the form of a sense of disappointment at their own lack of fit (Chapman, 2015). The Freya challenges that paradigm by treating the female body as a technical interface. The survey, the diagram, and the new construction of the Freya are evidence of actual design consideration being given to women’s bodies. They also produce a new insider position. Whoever cares and understands the diagram is recognising a technical correction that casual consumers may not even know to ask for. It separates the paddler who has lived with the failure apart.</p>
+
+      <p>Level Six is a small company in the paddlesports industry; the Freya is a niche product serving a niche market with comparatively low financial reward; thus, the Freya should not be flattened into a cynical brand exercise (Marquardt, 2025). The critique is structural: once a company has a story, that story can be leveraged for commercial gain in whatever manner desired. Once care becomes visible, care becomes valuable. The Freya acknowledges a genuine design failure, but the evidence for the correction of that design failure has now been packaged with the Freya as evidence of sensitivity to women. Both aspects are true, and the fact that one aspect does not negate the other.</p>
+
+      <p>Consequently, the Freya has created a small ecosystem of recognition, wherein, insider will purchase from the brand that represents understanding of the problem, and the brand will demonstrate the user’s understanding back to them, to strengthen the brand’s authority. Outsider products remain easier, cheaper or more visible, but they often keep the older logic intact, treating gear for women as a variation, instead of an original. Therefore, the Freya is exposing a split in the marketplace between products that view women only as consumers and products that understand women are also technical participants. An understanding of why the tweaks is significant in the context of the user’s level of paddling competence. Taste is often more than luxury styling, but the caring and knowing of how function is supposed to feel.</p>
+
+      <p>What the drysuit finally reveals is the narrowness of the imagination that made the Freya necessary. A garment designed to keep the wearer warm while participating in outdoor activities in a harsh environment should not require a public survey to establish that women’s bodies deserve serious technical accommodation. The fact that this fit had to be measured, diagrammed and marketed is the real discovery of this case study. The Freya has never proved that Level Six solved a gendered gear, it shows the previous market condition more clearly: women were expected to participate in a technical culture without always being treated as technical users. The drysuit assumes a body before it is worn. The Freya makes that assumption visible, then turns visibility into a product, along with a community story and a reason for that vote of confidence.</p>
+
+      <!-- ===== ANNOTATED BIBLIOGRAPHY ===== -->
+      <section class="biblio" data-screen-label="biblio">
+        <h2 class="biblio__h">Annotated bibliography</h2>
+
+        <div class="kr">
+          <p class="kr__n">Key Reference 01</p>
+          <div class="kr__row"><span class="kr__l">Detail &amp; access</span><p class="kr__c">Criado-Perez, C. (2019) <em>Invisible Women: Exposing Data Bias in a World Designed for Men.</em> London: Chatto &amp; Windus. <span class="src">London College of Communication Library, Main Collection, 305.420721 PER.</span></p></div>
+          <div class="kr__row"><span class="kr__l">Selected passage / quotation</span><p class="kr__c q">“The presumption that what is male is universal is a direct consequence of the gender data gap. […] because male data makes up the majority of what we know, what is male comes to be seen as universal. It leads to the positioning of women, half the global population, as a minority. With a niche identity and subjective point of view.”</p></div>
+          <div class="kr__row"><span class="kr__l">Importance &amp; relevance</span><p class="kr__c">This passage directly supports the essay’s starting claim: women’s technical fit is often treated as a niche correction because the male body has historically been treated as the default user. This prevents framing the Freya Drysuit case simply as a women’s product, instead, as a case that exposes a fact and design problem. The drysuit matters because it makes visible what was previously assumed and ignored, or left unmeasured.</p></div>
+        </div>
+
+        <div class="kr">
+          <p class="kr__n">Key Reference 02</p>
+          <div class="kr__row"><span class="kr__l">Detail &amp; access</span><p class="kr__c">Entwistle, J. (2015) <em>The Fashioned Body: Fashion, Dress and Modern Social Theory.</em> 2nd edn. Cambridge: Polity Press. <span class="src">Electronically through UAL Library via ProQuest Ebook Central.</span></p></div>
+          <div class="kr__row"><span class="kr__l">Selected passage / quotation</span><p class="kr__c q">“Dress in everyday life is always located spatially and temporally: when getting dressed one orientates oneself to the situation, acting in particular ways upon the body. However, one does not act upon the body as if it were an inert object but as the envelope of the self. Instead, our bodies are, in Merleau-Ponty’s words quoted above, ‘the visible form of our intentions’, indivisible from a sense of self.”</p></div>
+          <div class="kr__row"><span class="kr__l">Importance &amp; relevance</span><p class="kr__c">Entwistle’s words are useful because she frames dress as something that actually lived through the body. This supports my analysis of the Freya as technical clothing rather than styling. In a drysuit, fit is extremely situated: it affects movement, warmth, sealing, layering and access. Entwistle helps me argue that women’s fit is a functional and embodied design issue, instead of just a visual or symbolic one.</p></div>
+        </div>
+
+        <div class="kr">
+          <p class="kr__n">Key Reference 03</p>
+          <div class="kr__row"><span class="kr__l">Detail &amp; library access</span><p class="kr__c">Banet-Weiser, S. (2012) <em>Authentic TM: The politics and ambivalence in a brand culture.</em> New York, NY: New York University Press. <span class="src">Electronically through UAL Library via ProQuest Ebook Central.</span></p></div>
+          <div class="kr__row"><span class="kr__l">Selected passage / quotation</span><p class="kr__c q">“Rather than generalize all branding strategies as egregious effects of today’s market […] it is more productive to situate brand cultures in terms of their ambivalence, where both economic imperatives and ‘authenticity’ are expressed and experienced simultaneously.”</p></div>
+          <div class="kr__row"><span class="kr__l">Importance &amp; relevance</span><p class="kr__c">Banet-Weiser gives me a way to analyse Level Six without simply praising or dismissing it. The Freya Drysuit responds to a real design problem, but that response is also turned into a brand story of listening and community building. This source supports my argument that the product is both a functional correction and a commercial narrative, which is exactly the tension my essay is trying to examine.</p></div>
+        </div>
+
+        <div class="kr">
+          <p class="kr__n">Key Reference 04</p>
+          <div class="kr__row"><span class="kr__l">Detail &amp; access</span><p class="kr__c">Arvidsson, A. (2006) <em>Brands: Meaning and Value in Media Culture.</em> London: Routledge. <span class="src">Electronically through UAL Library via VLeBooks.</span></p></div>
+          <div class="kr__row"><span class="kr__l">Selected passage / quotation</span><p class="kr__c q">“Much of the value of brands derives from the free (in the sense of both unpaid and autonomous) productivity of consumers […] Brand management solves this problem by positioning the brand as a kind of virtual factory, by giving labour a place where its autonomous productivity more or less directly translates into feedback and information. […] Brands evolve with the activity of the social, but in programmed ways, so that the qualities that they represent stay compatible.”</p></div>
+          <div class="kr__row"><span class="kr__l">Importance &amp; relevance</span><p class="kr__c">Arvidsson helps me analyse the Freya survey as more than user-centred research. Women’s measurements, fit problems along with their very own stories also become information that strengthen the brand’s value. This source supports my critical balance: “community-driven change” may be sincere and practical, but it is still organised through a brand system that turns user experience into a polished, marketable quality.</p></div>
+        </div>
+
+        <div class="kr">
+          <p class="kr__n">Key Reference 05</p>
+          <div class="kr__row"><span class="kr__l">Detail &amp; access</span><p class="kr__c">Bourdieu, P. (2010) <em>Distinction: A Social Critique of the Judgement of Taste.</em> Translated by R. Nice. London: Taylor &amp; Francis Group. <span class="src">Electronically through UAL Library via ProQuest Ebook Central.</span></p></div>
+          <div class="kr__row"><span class="kr__l">Selected passage / quotation</span><p class="kr__c q">“Taste classifies, and it classifies the classifier. Social subjects, classified by their classifications, distinguish themselves by the distinctions they make, between the beautiful and the ugly, the distinguished and the vulgar […]. The antithesis between quantity and quality, substance and form, corresponds to the opposition […] between the taste of necessity […] and the taste of liberty—or luxury—which shifts the emphasis to the manner […] and tends to use stylized forms to deny function.”</p></div>
+          <div class="kr__row"><span class="kr__l">Importance &amp; relevance</span><p class="kr__c">This famous idea is useful here as Bourdieu shows that taste is far more than just personal preference, it sorts people into social positions. This helps me analyse technical outdoor gear as a form of competence and belonging. A drysuit is functional, but knowing why its zips, panels, tunnel height and fabric matter is also a code. His contrast between “substance/function” and “stylized form” also supports my argument that the Freya case pushes women’s gear back toward function rather than appearance.</p></div>
+        </div>
+      </section>
+
+      <!-- ===== ADDITIONAL REFERENCES ===== -->
+      <section class="refs" data-screen-label="refs">
+        <h2 class="biblio__h">List of additional references</h2>
+        <div class="refs__grid">
+          <div>
+            <ul class="refs__list">
+              <li><b>Chapman, J. (2015)</b> <em>Emotionally durable design: objects, experiences and empathy.</em> 2nd edn. London: Taylor and Francis Group.</li>
+              <li><b>Forty, A. (1986)</b> <em>Objects of Desire: Design and Society 1750–1980.</em> London: Thames and Hudson.</li>
+              <li><b>Haraway, D.J. (1990)</b> <em>Simians, cyborgs, and women: the reinvention of nature.</em> London: Taylor and Francis Group.</li>
+              <li><b>Level Six (2024a)</b> <em>Freya Drysuit survey, Level Six Europe.</em> Available at: https://levelsix.eu/pages/freya-drysuit-survey (Accessed: 11 May 2026).</li>
+              <li><b>Level Six (2024b)</b> <em>Women’s drysuit survey, Free Online Form Builder &amp; Form Creator.</em> Available at: https://form.jotform.com/243015129296152 (Accessed: 11 May 2026).</li>
+              <li><b>Level Six (2026b)</b> <em>B2B: 2026 dry suits, Level Six Europe.</em> Available at: https://levelsix.eu/pages/b2b-2026-dry-suits (Accessed: 14 May 2026).</li>
+              <li><b>Level Six (no date a)</b> <em>Freya women’s dry suit ♻, Level Six Europe.</em> Available at: https://levelsix.eu/collections/womens-drysuits/products/freya-womens-dry-suit (Accessed: 15 May 2026).</li>
+              <li><b>Marquardt, M. (2025)</b> <em>Combating ‘shrink it and pink it’, Paddling Magazine.</em> Available at: https://paddlingmag.com/stories/news-events/shrink-it-and-pink-it-level-six/ (Accessed: 11 May 2026).</li>
+              <li><b>Reuther, K.K. (2025)</b> <em>Shrink it and pink it: Gender bias in product design, Harvard ALI Social Impact Review.</em> Available at: https://www.sir.advancedleadership.harvard.edu/articles/shrink-it-and-pink-it-gender-bias-product-design (Accessed: 12 May 2026).</li>
+              <li><b>The Paddle Sports Show (2025)</b> <em>Level six - 2026 Freya drysuit, The Paddle Sport Show.</em> Available at: https://thepaddlesportshow.com/level-six-2026-freya-drysuit/ (Accessed: 18 May 2026).</li>
+              <li><b>Van Tilburg, M., Lieven, T., Herrmann, A. and Townsend, C. (2015)</b> ‘Beyond “Pink It and Shrink It”: Perceived Product Gender, Aesthetics, and Product Evaluation’, <em>Psychology &amp; Marketing,</em> 32(4), pp. 422–437.</li>
+              <li><b>Winner, L. (1980)</b> ‘Do artifacts have politics?’, <em>Daedalus,</em> 109(1), pp. 121–136. Available at: https://www.jstor.org/stable/20024652 (Accessed: 16 May 2026).</li>
+              <li><b>Woodward, S. and Fisher, T. (2014)</b> ‘Fashioning through materials: Material culture, materiality and processes of materialization’, <em>Critical Studies in Fashion &amp; Beauty,</em> 5(1), pp. 3–23. doi:10.1386/csfb.5.1.3_2.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="refs__sub">Figures</p>
+            <ul class="refs__list">
+              <li><b>Level Six (2024c)</b> <em>WOMENS GEAR IS CHANGING.</em> Available at: https://levelsix.eu/pages/freya-drysuit-survey (Accessed: 11 May 2026).</li>
+              <li><b>Level Six (2026a)</b> <em>2026 FREYA WOMENS DRY SUIT.</em> Available at: https://levelsix.eu/pages/b2b-2026-dry-suits (Accessed: 12 May 2026).</li>
+              <li><b>Level Six (no date b)</b> <em>UPDATED FREYA COMMUNITY DRIVEN CHANGE.</em> Available at: https://levelsix.eu/pages/a-community-driven-fit (Accessed: 15 May 2026).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
     </article>
 
-    <a class="next" href="mascot.html" data-screen-label="next-project">
-      <span><span class="lbl">Next project</span><br><span class="ttl">Mascot is the Message</span></span>
-      <span class="ar">→</span>
+    <!-- back to homepage -->
+    <a class="next next--back" href="../index.html" data-screen-label="back-home">
+      <span class="ar">←</span>
+      <span><span class="lbl">Back to</span><br><span class="ttl">All work</span></span>
     </a>
   </div>
 
